@@ -12,11 +12,8 @@ import jakarta.servlet.annotation.*;
 //@WebServlet(name = "helloServlet", value = "/hello-servlet")
 @WebServlet(name = "helloServlet", value = "/index")
 public class HelloServlet extends HttpServlet {
-    private String message;
-    private String carlist;
 
     public void init() {
-        message = "Hello World! this is a servlet";
         Personne tarik = new Personne("Tarik");
         Adress tarikAdr = new Adress("TIENT", 2511, "GHAZAOUET");
         Personne hadi = new Personne("Hadi");
@@ -38,7 +35,6 @@ public class HelloServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
 
-        // Hello
         PrintWriter out = response.getWriter();
         out.println("<html class='bg-gray-950 text-white'>");
         out.println("<head><script src='https://cdn.tailwindcss.com'></script></head");
@@ -51,7 +47,6 @@ public class HelloServlet extends HttpServlet {
     }
 
     public static void listView(PrintWriter out){
-        //print a table of the carnet
         out.println("<div class='flex flex-col gap-4 justify-center items-center ring-2 rounded-lg ring-blue-500 p-5'>");
         out.println("<table class='table-auto'>");
         out.println("<thead>");
@@ -104,7 +99,6 @@ public class HelloServlet extends HttpServlet {
         out.println("<h1 class='text-center text-2xl'> Add to carnet </h1>");
         out.println("<div class='flex flex-col gap-4 justify-center items-center ring-2 ring-red-500 p-2 rounded-md'>");
         out.println("<h2 class='text-center text-2xl'>Person</h2>");
-
         out.println("<div class='flex gap-4 justify-center items-center py-2'>");
         out.println("<label for='name'>name:</label>");
         out.println("<input type='text' class='text-black border-2 border-blue-500 rounded-lg p-2' placeholder='Enter your name'>");
