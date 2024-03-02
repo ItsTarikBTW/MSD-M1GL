@@ -39,11 +39,48 @@ public class HelloServlet extends HttpServlet {
         out.println("<html class='bg-gray-950 text-white'>");
         out.println("<head><script src='https://cdn.tailwindcss.com'></script></head");
         out.println("<body>");
-        out.println("<div class='flex justify-center items-center h-screen' >");
-        listView(out);
+        out.println("<div class='flex flex-col h-screen'>");
+        navBar(out);
+        out.println("<div class='flex justify-center items-center flex-1' >");
+        registerForm(out);
+        out.println("</div>");
         out.println("</div>");
         out.println("</body>");
         out.println("</html>");
+    }
+    public static void navBar(PrintWriter out){
+        out.println("<header class='bg-gray-800'>");
+        out.println("<nav class='container mx-auto px-6 py-3'>");
+        out.println("<div class='flex items-center justify-between'>");
+        out.println("<div class='text-white font-bold text-xl'>");
+        out.println("<a href='#'>Logo</a>");
+        out.println("</div>");
+        out.println("<div class='hidden md:block'>");
+        out.println("<ul class='flex items-center space-x-8'>");
+        out.println("<li><a href='#' class='text-white'>Home</a></li>");
+        out.println("<li><a href='#' class='text-white'>About</a></li>");
+        out.println("<li><a href='#' class='text-white'>Services</a></li>");
+        out.println("<li><a href='#' class='text-white'>Contact</a></li>");
+        out.println("</ul>");
+        out.println("</div>");
+        out.println("<div class='md:hidden'>");
+        out.println("<button class='outline-none mobile-menu-button'>");
+        out.println("<svg class='w-6 h-6 text-white' x-show='!showMenu' fill='none' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' stroke='currentColor'>");
+        out.println("<path d='M4 6h16M4 12h16M4 18h16'></path>");
+        out.println("</svg>");
+        out.println("</button>");
+        out.println("</div>");
+        out.println("</div>");
+        out.println("<div class='mobile-menu hidden md:hidden'>");
+        out.println("<ul class='mt-4 space-y-4'>");
+        out.println("<li><a href='#' class='block px-4 py-2 text-white bg-gray-900 rounded'>Home</a></li>");
+        out.println("<li><a href='#' class='block px-4 py-2 text-white bg-gray-900 rounded'>About</a></li>");
+        out.println("<li><a href='#' class='block px-4 py-2 text-white bg-gray-900 rounded'>Services</a></li>");
+        out.println("<li><a href='#' class='block px-4 py-2 text-white bg-gray-900 rounded'>Contact</a></li>");
+        out.println("</ul>");
+        out.println("</div>");
+        out.println("</nav>");
+        out.println("</header>");
     }
 
     public static void listView(PrintWriter out){
@@ -96,7 +133,8 @@ public class HelloServlet extends HttpServlet {
     }
     public static void registerForm(PrintWriter out){
         out.println("<form class='flex flex-col gap-4 justify-center items-center ring-2 rounded-lg ring-blue-500 p-5'>");
-        out.println("<h1 class='text-center text-2xl'> Add to carnet </h1>");
+        out.println("<h1 class='text-center text-3xl'> Add to carnet </h1>");
+        out.println("<div class='flex items-start justify-center gap-4'>");
         out.println("<div class='flex flex-col gap-4 justify-center items-center ring-2 ring-red-500 p-2 rounded-md'>");
         out.println("<h2 class='text-center text-2xl'>Person</h2>");
         out.println("<div class='flex gap-4 justify-center items-center py-2'>");
@@ -117,6 +155,7 @@ public class HelloServlet extends HttpServlet {
         out.println("<div class='flex gap-4 justify-center items-center py-2'>");
         out.println("<label for='name'>Ville:</label>");
         out.println("<input type='number' class='text-black border-2 border-blue-500 rounded-lg p-2' placeholder='Enter your name'>");
+        out.println("</div>");
         out.println("</div>");
         out.println("</div>");
         out.println("<button type='submit' class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Submit</button>");

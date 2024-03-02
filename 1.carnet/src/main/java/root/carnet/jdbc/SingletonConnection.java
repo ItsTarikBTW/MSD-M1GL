@@ -1,2 +1,4 @@
-package root.carnet.jdbc;public class SingletonConnection {
+package root.carnet.jdbc;
+
+public class SingletonConnection {
 }
