@@ -6,6 +6,11 @@ public class Carnet {
     public String nom;
     public HashMap<Personne, Adress> ensemble;
 
+    public Carnet() {
+        this.nom = "Carnet";
+        this.ensemble = new HashMap<Personne, Adress>();
+    }
+
     public Carnet(String nom) {
         this.nom = nom;
         this.ensemble = new HashMap<Personne, Adress>();
@@ -46,5 +51,6 @@ public class Carnet {
             System.out.println("Le carnet est vide");
         }
     }
+    
 
 }

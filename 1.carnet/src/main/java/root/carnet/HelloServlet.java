@@ -1,18 +1,22 @@
 package root.carnet;
 
 import java.io.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import root.carnet.Model.Adress;
-import root.carnet.Model.Carnet;
-import root.carnet.Model.Personne;
+import jakarta.servlet.ServletException;
+import root.carnet.Model.*;
 
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import root.carnet.jdbc.SingletonConnection;
 
 //@WebServlet(name = "helloServlet", value = "/hello-servlet")
-@WebServlet(name = "helloServlet", value = "/index")
+@WebServlet(name = "helloServlet", value = "/index/*")
 public class HelloServlet extends HttpServlet {
-
+    List<Carnet> listCarnet;
+    CarnetDAO carnerDao ;
     public void init() {
         Personne tarik = new Personne("Tarik");
         Adress tarikAdr = new Adress("TIENT", 2511, "GHAZAOUET");
@@ -30,9 +34,15 @@ public class HelloServlet extends HttpServlet {
         carnet.effacer(hadi);
         carnet.lister();
         carnet.chercher(tarik).print();
+        listCarnet = new ArrayList<Carnet>();
+        carnerDao = new CarnetDAOImpl();
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+        listCarnet = carnerDao.listCarnet();
+        request.setAttribute("listCarnet", listCarnet);
+        request.getRequestDispatcher("/lister.jsp").forward(request, response);
+        /*
         response.setContentType("text/html");
 
         PrintWriter out = response.getWriter();
@@ -46,7 +56,7 @@ public class HelloServlet extends HttpServlet {
         out.println("</div>");
         out.println("</div>");
         out.println("</body>");
-        out.println("</html>");
+        out.println("</html>");*/
     }
     public static void navBar(PrintWriter out){
         out.println("<header class='bg-gray-800'>");
@@ -154,7 +164,7 @@ public class HelloServlet extends HttpServlet {
         out.println("</div>");
         out.println("<div class='flex gap-4 justify-center items-center py-2'>");
         out.println("<label for='name'>Ville:</label>");
-        out.println("<input type='number' class='text-black border-2 border-blue-500 rounded-lg p-2' placeholder='Enter your name'>");
+        out.println("<input type='text' class='text-black border-2 border-blue-500 rounded-lg p-2' placeholder='Enter your name'>");
         out.println("</div>");
         out.println("</div>");
         out.println("</div>");
@@ -163,5 +173,6 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void destroy() {
+        SingletonConnection.closeConnection();
     }
 }

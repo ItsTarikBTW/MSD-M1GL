@@ -1,0 +1,5 @@
+com\example\exomsd\Interfaces\ICoursDao.class
+com\example\exomsd\Models\Cours.class
+com\example\exomsd\Interfaces\ICoursDaoImpl.class
+com\example\exomsd\CoursServlet.class
+com\example\exomsd\jdbc\SingletonConnection.class
