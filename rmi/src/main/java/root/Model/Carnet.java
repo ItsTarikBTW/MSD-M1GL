@@ -1,23 +1,23 @@
-package root.carnet.Model;
+package root.Model;
 
 import java.util.HashMap;
 import java.io.Serializable;
 public class Carnet implements Serializable {
     public int id;
     public String nom;
-    public HashMap<Personne, Adress> ensemble;
+    public HashMap<String, Adress> ensemble;
 
     public Carnet() {
         this.nom = "Carnet";
-        this.ensemble = new HashMap<Personne, Adress>();
+        this.ensemble = new HashMap<String, Adress>();
     }
 
     public Carnet(String nom) {
         this.nom = nom;
-        this.ensemble = new HashMap<Personne, Adress>();
+        this.ensemble = new HashMap<String, Adress>();
     }
 
-    public void enregistrer(Personne personne, Adress newAddress) {
+    public void enregistrer(String personne, Adress newAddress) {
 
         try {
             ensemble.put(personne, newAddress);
@@ -28,7 +28,7 @@ public class Carnet implements Serializable {
         }
     }
 
-    public void effacer(Personne personne) {
+    public void effacer(String personne) {
         try {
             ensemble.remove(personne);
         } catch (Exception e) {
@@ -36,7 +36,7 @@ public class Carnet implements Serializable {
         }
     }
 
-    public Adress chercher(Personne personne) {
+    public Adress chercher(String personne) {
         try {
             return ensemble.get(personne);
         } catch (Exception e) {
@@ -47,8 +47,8 @@ public class Carnet implements Serializable {
 
     public void lister() {
 
-        for (Personne personne : ensemble.keySet()) {
-            System.out.println(personne.nom + " : " + ensemble.get(personne));
+        for (String personne : ensemble.keySet()) {
+            System.out.println(personne + " : " + ensemble.get(personne));
         }
         if (ensemble.isEmpty()) {
             System.out.println("Le carnet est vide");

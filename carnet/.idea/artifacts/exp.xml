@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" build-on-make="true" name="exp">
+  <artifact type="exploded-war" name="exp">
     <output-path>$PROJECT_DIR$/out/artifacts/exp</output-path>
     <root id="root" />
   </artifact>

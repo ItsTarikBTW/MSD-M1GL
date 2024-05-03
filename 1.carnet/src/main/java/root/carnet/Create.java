@@ -5,13 +5,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import root.carnet.Model.*;
+import root.carnet.Model.Adress;
+import root.carnet.Model.CarnetDAO;
+import root.carnet.Model.CarnetDAOImpl;
+import root.carnet.Model.Personne;
 
 import java.io.IOException;
 
 //@WebServlet(name = "helloServlet", value = "/hello-servlet")
-@WebServlet(name = "updateServlet", value = "/update/*")
-public class Update extends HttpServlet {
+@WebServlet(name = "createServlet", value = "/create/*")
+public class Create extends HttpServlet {
     CarnetDAO carnerDao ;
     public void init() {
         carnerDao = new CarnetDAOImpl();

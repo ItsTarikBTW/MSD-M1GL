@@ -1,4 +1,4 @@
-package root.carnet.Model;
+package root.Model;
 import java.io.Serializable;
 public class Adress implements Serializable {
     public String nom;
