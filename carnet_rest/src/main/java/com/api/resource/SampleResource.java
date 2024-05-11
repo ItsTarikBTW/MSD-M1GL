@@ -22,6 +22,7 @@ import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 @Path("carnets")
 public class SampleResource {
     static Carnet[] carnets;
@@ -82,8 +83,8 @@ public class SampleResource {
     @POST
     @Path("{id}")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    @Produces(MediaType.TEXT_PLAIN)
-    public static String message(@PathParam("id") String id, 
+    @Produces(MediaType.APPLICATION_JSON)
+    public static Response message(@PathParam("id") String id, 
                                   @FormDataParam("nameP") String nameP, 
                                   @FormDataParam("nameA") String nameA, 
                                   @FormDataParam("numRue") int numRue, 
@@ -96,38 +97,38 @@ public class SampleResource {
         address.setVille(ville);
         carnets[carnetId].enregistrer(nameP, address);
     
-        return carnets[carnetId].toString();
+        return Response.ok(carnets[carnetId]).build();
     }
 
     @DELETE
     @Path("{id}/address/{nameP}")
-    @Produces(MediaType.TEXT_PLAIN)
-    public static String delAddress(@PathParam("id") String id,
+    @Produces(MediaType.APPLICATION_JSON)
+    public static Response delAddress(@PathParam("id") String id,
                                   @PathParam("nameP") String nameP){
         int carnetId = Integer.parseInt(id);
         carnets[carnetId].effacer(nameP);
-        return carnets[carnetId].toString();
+        return Response.ok(carnets[carnetId]).build();
     }
 
     @GET
     @Path("{id}/address/{nameP}")
-    @Produces(MediaType.TEXT_PLAIN)
-    public static String getAddress(@PathParam("id") String id,
+    @Produces(MediaType.APPLICATION_XML)
+    public static Address getAddress(@PathParam("id") String id,
                                   @PathParam("nameP") String nameP){
         int carnetId = Integer.parseInt(id);
         Address address = carnets[carnetId].chercher(nameP);
         if (address == null) {
             throw new WebApplicationException("Address not found", 404);
         }
-        return address.toString();
+        return address;
     }
 
     @GET
     @Path("{id}")
-    @Produces(MediaType.TEXT_PLAIN)
-    public static String getCarnet(@PathParam("id") String id){
+    @Produces(MediaType.APPLICATION_JSON)
+    public static Response getCarnet(@PathParam("id") String id){
         int carnetId = Integer.parseInt(id);
-        return carnets[carnetId].toString();
+        return Response.ok(carnets[carnetId]).build();
     }
 
 }
