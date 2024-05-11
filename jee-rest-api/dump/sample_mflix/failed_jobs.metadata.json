@@ -1,1 +1,0 @@
-{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"key":{"uuid":{"$numberInt":"1"}},"name":"uuid_1","unique":true}],"uuid":"3f1c212e57e94467886773c71f058acb","collectionName":"failed_jobs","type":"collection"}

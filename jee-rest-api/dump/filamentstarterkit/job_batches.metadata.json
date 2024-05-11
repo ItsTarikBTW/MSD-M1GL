@@ -1,1 +1,0 @@
-{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"key":{"id":{"$numberInt":"1"}},"name":"id_1","unique":true}],"uuid":"8e77c6aa49c245ddbbbd36a3471758a3","collectionName":"job_batches","type":"collection"}
